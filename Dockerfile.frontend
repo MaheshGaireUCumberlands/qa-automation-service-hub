@@ -73,22 +73,19 @@ EOF
 # Copy static files from builder
 COPY frontend/src/ /usr/share/nginx/html/
 
-# Create nginx user for security
+# Create nginx user and fix permissions
 RUN addgroup -g 1001 nginxgroup && \
     adduser -u 1001 -G nginxgroup -s /bin/sh -D nginxuser
 
-# Change ownership
-RUN chown -R nginxuser:nginxgroup /usr/share/nginx/html /var/cache/nginx /var/log/nginx /etc/nginx/conf.d /var/run
-
-# Switch to non-root user
-USER nginxuser
+# Fix ownership and permissions
+RUN chown -R nginxuser:nginxgroup /usr/share/nginx/html
 
 # Expose port
 EXPOSE 80
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=30s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
     CMD curl -f http://localhost/ || exit 1
 
-# Start nginx
+# Run nginx as root (required for port 80 and pid file access)
 CMD ["nginx", "-g", "daemon off;"]

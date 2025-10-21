@@ -1,0 +1,24 @@
+# Render configuration for backend service
+name: qa-automation-backend
+type: web
+env: docker
+dockerfilePath: ./Dockerfile.backend
+envVars:
+  - key: SPRING_PROFILES_ACTIVE
+    value: production
+  - key: HF_API_KEY
+    sync: false # Set this in Render dashboard
+  - key: SERVER_PORT
+    value: "8080"
+healthCheckPath: /actuator/health
+preDeployCommand: ""
+buildCommand: ""
+startCommand: ""
+region: oregon
+plan: free
+autoDeploy: true
+numInstances: 1
+disk:
+  name: qa-automation-backend-disk
+  sizeGB: 1
+  mountPath: /app/logs

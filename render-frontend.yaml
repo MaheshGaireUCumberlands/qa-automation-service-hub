@@ -1,0 +1,16 @@
+# Render configuration for frontend service
+name: qa-automation-frontend
+type: web
+env: docker
+dockerfilePath: ./Dockerfile.frontend
+envVars:
+  - key: BACKEND_URL
+    value: https://qa-automation-backend.onrender.com
+region: oregon
+plan: free
+autoDeploy: true
+numInstances: 1
+routes:
+  - type: rewrite
+    source: /api/*
+    destination: https://qa-automation-backend.onrender.com/api/*
