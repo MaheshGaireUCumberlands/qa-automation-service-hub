@@ -135,6 +135,51 @@ See [SERVICE-MANAGEMENT.md](SERVICE-MANAGEMENT.md) for detailed documentation.
 
 ---
 
+## 🐳 **Docker Deployment**
+
+### 🚀 **Quick Docker Start**
+```bash
+# Basic deployment (frontend + backend)
+./deploy.sh basic
+
+# Full deployment with monitoring
+./deploy.sh monitoring
+
+# Check status
+./deploy.sh status
+
+# View logs
+./deploy.sh logs
+```
+
+### 🔧 **Manual Docker Commands**
+```bash
+# Basic services
+docker-compose up -d
+
+# With monitoring stack
+docker-compose --profile monitoring up -d
+
+# Stop services
+docker-compose down
+```
+
+### 🌐 **Docker Service Access**
+- **Frontend**: http://localhost (port 80)
+- **Backend**: http://localhost:8080
+- **Grafana**: http://localhost:3000 (admin/qa-automation-2025)
+- **Prometheus**: http://localhost:9090
+
+### 📖 **Production Setup**
+1. Copy environment template: `cp .env.example .env`
+2. Update your HuggingFace API key in `.env`
+3. Run: `./deploy.sh monitoring`
+4. Access monitoring at http://localhost:3000
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for comprehensive deployment guide.
+
+---
+
 ## ⚙️ Demo Overview
 
 ✅ **MCP Protocol Integration** - Industry-standard AI tool connectivity with comprehensive user guide  
