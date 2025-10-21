@@ -94,15 +94,20 @@
         async function checkApiStatus() {
             const statusElement = document.getElementById('api-status');
             try {
+                console.log('Checking API status at:', `${API_BASE}/actuator/health`);
                 const response = await fetch(`${API_BASE}/actuator/health`);
+                console.log('API response status:', response.status);
                 if (response.ok) {
+                    const data = await response.json();
+                    console.log('API health data:', data);
                     statusElement.textContent = '✅ Connected';
                     statusElement.className = 'text-lg font-bold text-green-600';
                 } else {
-                    throw new Error('API not healthy');
+                    throw new Error(`API not healthy - Status: ${response.status}`);
                 }
             } catch (error) {
-                statusElement.textContent = '❌ Disconnected';
+                console.error('API connection error:', error);
+                statusElement.textContent = `❌ Disconnected (${error.message})`;
                 statusElement.className = 'text-lg font-bold text-red-600';
             }
         }
@@ -117,13 +122,17 @@
             }
 
             try {
+                console.log('Generating test data:', dataType, 'count:', count);
                 const response = await fetch(`${API_BASE}/api/v1/testdata/generate/${dataType}?count=${count}`);
+                console.log('Generate response status:', response.status);
                 const data = await response.json();
+                console.log('Generated data:', data);
                 
                 document.getElementById('results').classList.remove('hidden');
                 document.getElementById('data-output').innerHTML = 
                     '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
             } catch (error) {
+                console.error('Error generating test data:', error);
                 alert('Error generating test data: ' + error.message);
             }
         }
