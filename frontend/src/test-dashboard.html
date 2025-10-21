@@ -20,33 +20,139 @@
                 <div id="api-status" class="text-lg font-bold text-gray-500">Checking...</div>
             </div>
 
-            <!-- Test Data Generation -->
-            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
-                <h2 class="text-xl font-semibold mb-4">🎲 Test Data Generation</h2>
+            <!-- Enhanced Test Data Generation -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-bold mb-4">🚀 Enhanced Test Data Generation</h2>
+                <p class="text-gray-600 mb-4">Generate realistic test data with relationships and advanced features</p>
                 
-                <div class="flex gap-4 mb-4">
-                    <select id="dataType" class="px-3 py-2 border border-gray-300 rounded-md">
-                        <option value="">Select Data Type</option>
-                        <option value="user">User</option>
-                        <option value="product">Product</option>
-                        <option value="order">Order</option>
-                        <option value="address">Address</option>
-                        <option value="payment">Payment</option>
-                    </select>
-                    
-                    <input type="number" id="recordCount" placeholder="Count" min="1" max="50" value="5"
-                           class="px-3 py-2 border border-gray-300 rounded-md">
-                    
-                    <button onclick="generateTestData()" 
-                            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
-                        Generate Data
-                    </button>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <!-- Enhanced Users -->
+                    <div class="border rounded-lg p-4">
+                        <h3 class="font-semibold mb-2">👥 Enhanced Users</h3>
+                        <p class="text-sm text-gray-600 mb-3">Complete user profiles with addresses and company info</p>
+                        <div class="space-y-2">
+                            <input type="number" id="userCount" placeholder="User Count" min="1" max="20" value="3"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="includeUserOrders" class="mr-2">
+                                <span class="text-sm">Include order history</span>
+                            </label>
+                            <button onclick="generateEnhancedUsers()" 
+                                    class="w-full px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 text-sm">
+                                Generate Users
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Users with Orders -->
+                    <div class="border rounded-lg p-4">
+                        <h3 class="font-semibold mb-2">🛒 Users + Orders</h3>
+                        <p class="text-sm text-gray-600 mb-3">Users with realistic order relationships</p>
+                        <div class="space-y-2">
+                            <input type="number" id="userOrderCount" placeholder="Users" min="1" max="10" value="2"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
+                            <div class="flex gap-1">
+                                <input type="number" id="minOrders" placeholder="Min Orders" min="1" max="10" value="1"
+                                       class="w-1/2 px-2 py-1 border border-gray-300 rounded-md text-sm">
+                                <input type="number" id="maxOrders" placeholder="Max Orders" min="1" max="10" value="5"
+                                       class="w-1/2 px-2 py-1 border border-gray-300 rounded-md text-sm">
+                            </div>
+                            <button onclick="generateUsersWithOrders()" 
+                                    class="w-full px-3 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 text-sm">
+                                Generate Relations
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Orders -->
+                    <div class="border rounded-lg p-4">
+                        <h3 class="font-semibold mb-2">📦 Enhanced Orders</h3>
+                        <p class="text-sm text-gray-600 mb-3">Detailed orders with items and payments</p>
+                        <div class="space-y-2">
+                            <input type="number" id="orderCount" placeholder="Order Count" min="1" max="20" value="5"
+                                   class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
+                            <label class="flex items-center">
+                                <input type="checkbox" id="includeOrderItems" checked class="mr-2">
+                                <span class="text-sm">Include order items</span>
+                            </label>
+                            <button onclick="generateEnhancedOrders()" 
+                                    class="w-full px-3 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 text-sm">
+                                Generate Orders
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Results -->
-                <div id="results" class="mt-4 hidden">
-                    <h3 class="text-lg font-medium mb-2">Generated Data:</h3>
-                    <div id="data-output" class="bg-gray-50 border rounded-md p-4 max-h-96 overflow-y-auto">
+                <!-- Enhanced Results -->
+                <div id="enhancedResults" class="mt-4 hidden">
+                    <h3 class="text-lg font-medium mb-2">Enhanced Data Results:</h3>
+                    <div id="enhanced-data-output" class="bg-gray-50 border rounded-md p-4 max-h-96 overflow-y-auto">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🤖 FREE AI Analysis -->
+            <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
+                <h2 class="text-xl font-bold mb-4">🤖 FREE AI-Powered Analysis</h2>
+                <p class="text-gray-600 mb-4">Get intelligent insights from your test data - completely FREE!</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <!-- AI Demo -->
+                    <div class="border rounded-lg p-4 bg-blue-50">
+                        <h3 class="font-semibold mb-2 text-blue-800">🎯 AI Demo</h3>
+                        <p class="text-sm text-gray-600 mb-3">Try AI analysis with sample data</p>
+                        <div class="space-y-2">
+                            <select id="aiDemoType" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
+                                <option value="summary">Summary Analysis</option>
+                                <option value="recommendations">Recommendations</option>
+                                <option value="documentation">Documentation</option>
+                                <option value="patterns">Pattern Analysis</option>
+                            </select>
+                            <button onclick="runAIDemo()" 
+                                    class="w-full px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm">
+                                🚀 Try AI Analysis
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Analyze Your Data -->
+                    <div class="border rounded-lg p-4 bg-green-50">
+                        <h3 class="font-semibold mb-2 text-green-800">🔍 Analyze Generated Data</h3>
+                        <p class="text-sm text-gray-600 mb-3">AI analysis of your test data</p>
+                        <div class="space-y-2">
+                            <select id="aiAnalysisType" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
+                                <option value="summary">Data Summary</option>
+                                <option value="recommendations">Get Recommendations</option>
+                                <option value="documentation">Generate Docs</option>
+                            </select>
+                            <button onclick="analyzeCurrentData()" 
+                                    class="w-full px-3 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 text-sm">
+                                🤖 Analyze Data
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- AI Setup -->
+                    <div class="border rounded-lg p-4 bg-purple-50">
+                        <h3 class="font-semibold mb-2 text-purple-800">⚙️ AI Setup</h3>
+                        <p class="text-sm text-gray-600 mb-3">Configure AI provider</p>
+                        <div class="space-y-2">
+                            <button onclick="showAICapabilities()" 
+                                    class="w-full px-3 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 text-sm">
+                                📋 View AI Options
+                            </button>
+                            <p class="text-xs text-gray-500 mt-2">
+                                Current: Mock AI (FREE)<br>
+                                Available: Ollama, HuggingFace
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Results -->
+                <div id="aiResults" class="mt-4 hidden">
+                    <h3 class="text-lg font-medium mb-2 text-blue-700">🤖 AI Analysis Results:</h3>
+                    <div id="ai-output" class="bg-gradient-to-r from-blue-50 to-purple-50 border rounded-md p-4 max-h-96 overflow-y-auto">
                     </div>
                 </div>
             </div>
@@ -112,31 +218,6 @@
             }
         }
 
-        async function generateTestData() {
-            const dataType = document.getElementById('dataType').value;
-            const count = document.getElementById('recordCount').value;
-            
-            if (!dataType) {
-                alert('Please select a data type');
-                return;
-            }
-
-            try {
-                console.log('Generating test data:', dataType, 'count:', count);
-                const response = await fetch(`${API_BASE}/api/v1/testdata/generate/${dataType}?count=${count}`);
-                console.log('Generate response status:', response.status);
-                const data = await response.json();
-                console.log('Generated data:', data);
-                
-                document.getElementById('results').classList.remove('hidden');
-                document.getElementById('data-output').innerHTML = 
-                    '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
-            } catch (error) {
-                console.error('Error generating test data:', error);
-                alert('Error generating test data: ' + error.message);
-            }
-        }
-
         async function testHealthCheck() {
             try {
                 const response = await fetch(`${API_BASE}/actuator/health`);
@@ -163,6 +244,283 @@
 
         function testMetrics() {
             window.open(`${API_BASE}/actuator/metrics`, '_blank');
+        }
+
+        // Enhanced Test Data Generation Functions
+        async function generateEnhancedUsers() {
+            const count = document.getElementById('userCount').value;
+            const includeOrders = document.getElementById('includeUserOrders').checked;
+            
+            try {
+                console.log('Generating enhanced users:', count, 'includeOrders:', includeOrders);
+                const response = await fetch(`${API_BASE}/api/v2/testdata/users?count=${count}&includeOrders=${includeOrders}`);
+                console.log('Enhanced users response status:', response.status);
+                const data = await response.json();
+                console.log('Enhanced users data:', data);
+                
+                displayEnhancedResults(data, `Enhanced Users (${data.length} generated)`);
+                updateLastGeneratedData(data);
+            } catch (error) {
+                console.error('Error generating enhanced users:', error);
+                alert('Error generating enhanced users: ' + error.message);
+            }
+        }
+
+        async function generateUsersWithOrders() {
+            const userCount = document.getElementById('userOrderCount').value;
+            const minOrders = document.getElementById('minOrders').value;
+            const maxOrders = document.getElementById('maxOrders').value;
+            
+            try {
+                console.log('Generating users with orders:', userCount, 'orders:', minOrders, '-', maxOrders);
+                const response = await fetch(`${API_BASE}/api/v2/testdata/users-with-orders?userCount=${userCount}&minOrders=${minOrders}&maxOrders=${maxOrders}`);
+                console.log('Users with orders response status:', response.status);
+                const data = await response.json();
+                console.log('Users with orders data:', data);
+                
+                displayEnhancedResults(data, `Users with Orders (${data.length} users, ${data.reduce((sum, user) => sum + (user.orders ? user.orders.length : 0), 0)} total orders)`);
+                updateLastGeneratedData(data);
+            } catch (error) {
+                console.error('Error generating users with orders:', error);
+                alert('Error generating users with orders: ' + error.message);
+            }
+        }
+
+        async function generateEnhancedOrders() {
+            const count = document.getElementById('orderCount').value;
+            const includeItems = document.getElementById('includeOrderItems').checked;
+            
+            try {
+                console.log('Generating enhanced orders:', count, 'includeItems:', includeItems);
+                const response = await fetch(`${API_BASE}/api/v2/testdata/orders?count=${count}&includeItems=${includeItems}`);
+                console.log('Enhanced orders response status:', response.status);
+                const data = await response.json();
+                console.log('Enhanced orders data:', data);
+                
+                displayEnhancedResults(data, `Enhanced Orders (${data.length} generated)`);
+                updateLastGeneratedData(data);
+            } catch (error) {
+                console.error('Error generating enhanced orders:', error);
+                alert('Error generating enhanced orders: ' + error.message);
+            }
+        }
+
+        function displayEnhancedResults(data, title) {
+            document.getElementById('enhancedResults').classList.remove('hidden');
+            document.getElementById('enhanced-data-output').innerHTML = 
+                `<h4 class="font-semibold text-green-700 mb-2">${title}</h4>` +
+                '<pre class="text-sm">' + JSON.stringify(data, null, 2) + '</pre>';
+        }
+
+        // 🤖 FREE AI Analysis Functions
+        let lastGeneratedData = null;
+
+        async function runAIDemo() {
+            const analysisType = document.getElementById('aiDemoType').value;
+            
+            try {
+                console.log('Running AI demo with type:', analysisType);
+                const response = await fetch(`${API_BASE}/api/v1/ai/demo?analysisType=${analysisType}`);
+                console.log('AI demo response status:', response.status);
+                const data = await response.json();
+                console.log('AI demo data:', data);
+                
+                displayAIResults(data, `🤖 AI Demo Analysis - ${analysisType.toUpperCase()}`);
+            } catch (error) {
+                console.error('Error running AI demo:', error);
+                alert('Error running AI demo: ' + error.message);
+            }
+        }
+
+        async function analyzeCurrentData() {
+            const analysisType = document.getElementById('aiAnalysisType').value;
+            
+            if (!lastGeneratedData) {
+                alert('Please generate some test data first, then try AI analysis');
+                return;
+            }
+            
+            try {
+                console.log('Analyzing current data with type:', analysisType);
+                const requestBody = {
+                    analysisType: analysisType,
+                    testData: lastGeneratedData,
+                    options: {
+                        includeDetails: true,
+                        includeRecommendations: true,
+                        focusAreas: ['data_quality', 'test_coverage', 'optimization']
+                    }
+                };
+                
+                const response = await fetch(`${API_BASE}/api/v1/ai/analyze`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestBody)
+                });
+                
+                console.log('AI analysis response status:', response.status);
+                const data = await response.json();
+                console.log('AI analysis data:', data);
+                
+                displayAIResults(data, `🔍 AI Analysis of Your Data - ${analysisType.toUpperCase()}`);
+            } catch (error) {
+                console.error('Error analyzing data:', error);
+                alert('Error analyzing data: ' + error.message);
+            }
+        }
+
+        async function showAICapabilities() {
+            try {
+                console.log('Fetching AI capabilities');
+                const response = await fetch(`${API_BASE}/api/v1/ai/capabilities`);
+                console.log('AI capabilities response status:', response.status);
+                const data = await response.json();
+                console.log('AI capabilities data:', data);
+                
+                displayAICapabilities(data);
+            } catch (error) {
+                console.error('Error fetching AI capabilities:', error);
+                alert('Error fetching AI capabilities: ' + error.message);
+            }
+        }
+
+        function displayAIResults(data, title) {
+            document.getElementById('aiResults').classList.remove('hidden');
+            
+            let html = `<h4 class="font-semibold text-blue-700 mb-3">${title}</h4>`;
+            
+            // Summary
+            if (data.summary) {
+                html += `<div class="mb-4">
+                    <h5 class="font-medium text-gray-800 mb-2">📝 Summary</h5>
+                    <p class="text-gray-700 bg-white p-3 rounded border">${data.summary}</p>
+                </div>`;
+            }
+            
+            // Insights
+            if (data.insights && data.insights.length > 0) {
+                html += `<div class="mb-4">
+                    <h5 class="font-medium text-gray-800 mb-2">💡 Key Insights</h5>
+                    <div class="space-y-2">`;
+                
+                data.insights.forEach(insight => {
+                    const importanceStars = '⭐'.repeat(insight.importance || 3);
+                    html += `<div class="bg-white p-3 rounded border">
+                        <div class="flex justify-between items-start">
+                            <span class="font-medium text-gray-800">${insight.category}</span>
+                            <span class="text-sm">${importanceStars}</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mt-1">${insight.description}</p>
+                    </div>`;
+                });
+                
+                html += `</div></div>`;
+            }
+            
+            // Recommendations
+            if (data.recommendations && data.recommendations.length > 0) {
+                html += `<div class="mb-4">
+                    <h5 class="font-medium text-gray-800 mb-2">🎯 Recommendations</h5>
+                    <div class="space-y-2">`;
+                
+                data.recommendations.forEach(rec => {
+                    const priorityColor = {
+                        'high': 'text-red-600 bg-red-50',
+                        'medium': 'text-yellow-600 bg-yellow-50',
+                        'low': 'text-green-600 bg-green-50'
+                    }[rec.priority] || 'text-gray-600 bg-gray-50';
+                    
+                    html += `<div class="bg-white p-3 rounded border">
+                        <div class="flex justify-between items-start">
+                            <span class="font-medium text-gray-800">${rec.type}</span>
+                            <span class="px-2 py-1 rounded text-xs ${priorityColor}">${rec.priority}</span>
+                        </div>
+                        <p class="text-gray-600 text-sm mt-1">${rec.description}</p>
+                        <div class="flex gap-4 mt-2 text-xs text-gray-500">
+                            <span>Effort: ${rec.effort}</span>
+                            <span>Impact: ${rec.impact}</span>
+                        </div>
+                    </div>`;
+                });
+                
+                html += `</div></div>`;
+            }
+            
+            // Metrics
+            if (data.metrics) {
+                html += `<div class="mb-4">
+                    <h5 class="font-medium text-gray-800 mb-2">📊 Analysis Metrics</h5>
+                    <div class="bg-white p-3 rounded border">
+                        <div class="grid grid-cols-2 gap-2 text-sm">
+                            <div>Model: <span class="font-medium">${data.modelUsed}</span></div>
+                            <div>Confidence: <span class="font-medium">${Math.round((data.confidenceScore || 0) * 100)}%</span></div>
+                            <div>Processing: <span class="font-medium">${data.processingTimeMs}ms</span></div>
+                            <div>Provider: <span class="font-medium">${data.metrics.ai_provider || 'unknown'}</span></div>
+                        </div>
+                    </div>
+                </div>`;
+            }
+            
+            document.getElementById('ai-output').innerHTML = html;
+        }
+
+        function displayAICapabilities(data) {
+            document.getElementById('aiResults').classList.remove('hidden');
+            
+            let html = `<h4 class="font-semibold text-purple-700 mb-3">⚙️ AI Configuration & Capabilities</h4>`;
+            
+            // Current setup
+            html += `<div class="mb-4 bg-white p-4 rounded border">
+                <h5 class="font-medium text-gray-800 mb-2">Current Setup</h5>
+                <div class="text-sm">
+                    <p><span class="font-medium">Provider:</span> ${data.current_provider}</p>
+                    <p><span class="font-medium">Cost:</span> <span class="text-green-600 font-bold">${data.cost}</span></p>
+                </div>
+            </div>`;
+            
+            // Available providers
+            html += `<div class="mb-4">
+                <h5 class="font-medium text-gray-800 mb-2">🆓 Free AI Options</h5>
+                <div class="space-y-3">`;
+            
+            Object.entries(data.available_providers).forEach(([key, provider]) => {
+                const isActive = key === data.current_provider;
+                const borderColor = isActive ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-white';
+                
+                html += `<div class="p-3 rounded border ${borderColor}">
+                    <div class="flex justify-between items-start mb-2">
+                        <h6 class="font-medium">${key.toUpperCase()}</h6>
+                        <span class="text-xs px-2 py-1 bg-green-100 text-green-700 rounded">${provider.cost}</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2">${provider.description}</p>
+                    ${provider.setup ? `<p class="text-xs text-blue-600">${provider.setup}</p>` : ''}
+                    ${isActive ? '<p class="text-xs text-green-600 font-medium mt-1">✅ Currently Active</p>' : ''}
+                </div>`;
+            });
+            
+            html += `</div></div>`;
+            
+            // Analysis types
+            html += `<div class="mb-4 bg-white p-4 rounded border">
+                <h5 class="font-medium text-gray-800 mb-2">Available Analysis Types</h5>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">`;
+            
+            Object.entries(data.analysis_types).forEach(([type, description]) => {
+                html += `<div class="p-2 bg-gray-50 rounded">
+                    <span class="font-medium">${type}:</span> ${description}
+                </div>`;
+            });
+            
+            html += `</div></div>`;
+            
+            document.getElementById('ai-output').innerHTML = html;
+        }
+
+        // Update the existing functions to store data for AI analysis
+        function updateLastGeneratedData(data) {
+            lastGeneratedData = data;
         }
     </script>
 </body>
