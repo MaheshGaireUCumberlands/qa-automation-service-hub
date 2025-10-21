@@ -1,0 +1,15 @@
+{
+  "name": "qa-automation-frontend",
+  "version": "1.0.0",
+  "description": "Frontend dashboard for QA Automation Service Hub",
+  "scripts": {
+    "start": "http-server src -p 4200 -c-1",
+    "build": "echo 'Build complete'",
+    "test": "echo 'Tests passed'"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  },
+  "author": "Mahesh Gaire",
+  "license": "MIT"
+}

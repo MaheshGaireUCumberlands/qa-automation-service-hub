@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Automation Service Hub - Test Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="min-h-screen">
+        <header class="bg-blue-600 text-white p-4">
+            <h1 class="text-2xl font-bold">🧪 QA Automation Service Hub - Test Dashboard</h1>
+            <p class="text-blue-200">Test your backend APIs and view results</p>
+        </header>
+
+        <main class="container mx-auto p-6">
+            <!-- API Status -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h2 class="text-xl font-semibold mb-4">🔌 API Connection Status</h2>
+                <div id="api-status" class="text-lg font-bold text-gray-500">Checking...</div>
+            </div>
+
+            <!-- Test Data Generation -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h2 class="text-xl font-semibold mb-4">🎲 Test Data Generation</h2>
+                
+                <div class="flex gap-4 mb-4">
+                    <select id="dataType" class="px-3 py-2 border border-gray-300 rounded-md">
+                        <option value="">Select Data Type</option>
+                        <option value="user">User</option>
+                        <option value="product">Product</option>
+                        <option value="order">Order</option>
+                        <option value="address">Address</option>
+                        <option value="payment">Payment</option>
+                    </select>
+                    
+                    <input type="number" id="recordCount" placeholder="Count" min="1" max="50" value="5"
+                           class="px-3 py-2 border border-gray-300 rounded-md">
+                    
+                    <button onclick="generateTestData()" 
+                            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
+                        Generate Data
+                    </button>
+                </div>
+
+                <!-- Results -->
+                <div id="results" class="mt-4 hidden">
+                    <h3 class="text-lg font-medium mb-2">Generated Data:</h3>
+                    <div id="data-output" class="bg-gray-50 border rounded-md p-4 max-h-96 overflow-y-auto">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick API Tests -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-4">⚡ Quick API Tests</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <button onclick="testHealthCheck()" 
+                            class="p-4 border-2 border-green-300 rounded-lg hover:bg-green-50">
+                        <div class="text-2xl mb-2">❤️</div>
+                        <div class="font-medium">Health Check</div>
+                    </button>
+                    
+                    <button onclick="testTemplates()" 
+                            class="p-4 border-2 border-blue-300 rounded-lg hover:bg-blue-50">
+                        <div class="text-2xl mb-2">📋</div>
+                        <div class="font-medium">Get Templates</div>
+                    </button>
+                    
+                    <button onclick="testSwagger()" 
+                            class="p-4 border-2 border-purple-300 rounded-lg hover:bg-purple-50">
+                        <div class="text-2xl mb-2">📚</div>
+                        <div class="font-medium">Open Swagger</div>
+                    </button>
+                    
+                    <button onclick="testMetrics()" 
+                            class="p-4 border-2 border-orange-300 rounded-lg hover:bg-orange-50">
+                        <div class="text-2xl mb-2">📊</div>
+                        <div class="font-medium">View Metrics</div>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080';
+
+        // Check API status on load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkApiStatus();
+        });
+
+        async function checkApiStatus() {
+            const statusElement = document.getElementById('api-status');
+            try {
+                const response = await fetch(`${API_BASE}/actuator/health`);
+                if (response.ok) {
+                    statusElement.textContent = '✅ Connected';
+                    statusElement.className = 'text-lg font-bold text-green-600';
+                } else {
+                    throw new Error('API not healthy');
+                }
+            } catch (error) {
+                statusElement.textContent = '❌ Disconnected';
+                statusElement.className = 'text-lg font-bold text-red-600';
+            }
+        }
+
+        async function generateTestData() {
+            const dataType = document.getElementById('dataType').value;
+            const count = document.getElementById('recordCount').value;
+            
+            if (!dataType) {
+                alert('Please select a data type');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/testdata/generate/${dataType}?count=${count}`);
+                const data = await response.json();
+                
+                document.getElementById('results').classList.remove('hidden');
+                document.getElementById('data-output').innerHTML = 
+                    '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                alert('Error generating test data: ' + error.message);
+            }
+        }
+
+        async function testHealthCheck() {
+            try {
+                const response = await fetch(`${API_BASE}/actuator/health`);
+                const data = await response.json();
+                alert('Health Check Result:\\n' + JSON.stringify(data, null, 2));
+            } catch (error) {
+                alert('Health check failed: ' + error.message);
+            }
+        }
+
+        async function testTemplates() {
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/testdata/templates`);
+                const data = await response.json();
+                alert('Available Templates:\\n' + JSON.stringify(data, null, 2));
+            } catch (error) {
+                alert('Failed to get templates: ' + error.message);
+            }
+        }
+
+        function testSwagger() {
+            window.open(`${API_BASE}/swagger-ui.html`, '_blank');
+        }
+
+        function testMetrics() {
+            window.open(`${API_BASE}/actuator/metrics`, '_blank');
+        }
+    </script>
+</body>
+</html>

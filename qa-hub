@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Simple wrapper script for QA Automation Service Hub
+# Quick commands for common operations
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SERVICE_SCRIPT="$SCRIPT_DIR/start-services.sh"
+
+# Colors
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+echo -e "${BLUE}🧪 QA Automation Service Hub - Quick Start${NC}"
+echo
+
+case "${1:-help}" in
+    "up"|"start")
+        echo -e "${GREEN}🚀 Starting all services...${NC}"
+        "$SERVICE_SCRIPT" start
+        ;;
+    "down"|"stop")
+        echo -e "${GREEN}🛑 Stopping all services...${NC}"
+        "$SERVICE_SCRIPT" stop
+        ;;
+    "restart")
+        echo -e "${GREEN}🔄 Restarting all services...${NC}"
+        "$SERVICE_SCRIPT" restart
+        ;;
+    "status"|"ps")
+        "$SERVICE_SCRIPT" status
+        ;;
+    *)
+        echo "Quick Commands:"
+        echo "  ./qa-hub up      # Start all services"
+        echo "  ./qa-hub down    # Stop all services"
+        echo "  ./qa-hub restart # Restart all services"
+        echo "  ./qa-hub status  # Check status"
+        echo
+        echo "For more options, use: ./start-services.sh help"
+        ;;
+esac
