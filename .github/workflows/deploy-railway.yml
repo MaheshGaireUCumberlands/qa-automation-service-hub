@@ -14,26 +14,38 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
     - name: Install Railway CLI
-      run: |
-        curl -fsSL https://railway.app/install.sh | sh
-        echo "$HOME/.railway/bin" >> $GITHUB_PATH
+      run: npm install -g @railway/cli
         
-    - name: Railway Login
-      run: railway login --token ${{ secrets.RAILWAY_TOKEN }}
-      
-    - name: Deploy Backend
+    - name: Deploy to Railway
       run: |
-        cd backend
-        railway up --service backend
+        # Set Railway token as environment variable
+        export RAILWAY_TOKEN="${{ secrets.RAILWAY_TOKEN }}"
         
-    - name: Deploy Frontend  
-      run: |
-        cd frontend
-        railway up --service frontend
+        # Deploy the application
+        railway up --detach
         
-    - name: Health Check
+        # Set environment variables
+        railway variables --set "SPRING_PROFILES_ACTIVE=production" --skip-deploys
+        railway variables --set "SERVER_PORT=8080" --skip-deploys
+        railway variables --set "HF_API_KEY=${{ secrets.HF_API_KEY }}" --skip-deploys
+        railway variables --set "RAILWAY_ENVIRONMENT=production"
+      env:
+        RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        
+    - name: Deployment Status
       run: |
-        echo "Waiting for deployment to complete..."
-        sleep 30
-        # Add health check URLs here once deployed
+        echo "✅ Deployment initiated successfully!"
+        echo "🔗 Check your Railway dashboard: https://railway.app/dashboard"
+        echo "⏳ Deployment may take 2-5 minutes to complete"
+        echo ""
+        echo "Required GitHub Secrets:"
+        echo "- RAILWAY_TOKEN: Your Railway API token"
+        echo "- HF_API_KEY: Your HuggingFace API key (optional, defaults to demo-mode)"
+      env:
+        RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
