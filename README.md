@@ -180,6 +180,43 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for comprehensive deployment guide.
 
 ---
 
+## 🌐 **Free Cloud Deployment (Railway)**
+
+### 🚀 **One-Click Deploy to Railway**
+
+Deploy instantly to Railway's free tier:
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template)
+
+### 🔧 **Manual Railway Deployment**
+```bash
+# Install Railway CLI
+npm install -g @railway/cli
+
+# Deploy with our script
+./railway-deploy.sh
+
+# Or deploy manually
+railway login
+railway init
+railway up
+```
+
+### 🌐 **Railway Service Access**
+- **Live App**: `https://your-app.railway.app`
+- **Backend API**: `https://your-api.railway.app`
+- **Health Check**: `https://your-api.railway.app/actuator/health`
+
+### 📖 **Railway Setup Guide**
+1. Get HuggingFace API key (free): [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)
+2. Run deployment script: `./railway-deploy.sh`
+3. Set environment variables in Railway dashboard
+4. Your app will be live in minutes!
+
+See [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md) for detailed Railway deployment guide.
+
+---
+
 ## ⚙️ Demo Overview
 
 ✅ **MCP Protocol Integration** - Industry-standard AI tool connectivity with comprehensive user guide  

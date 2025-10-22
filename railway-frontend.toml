@@ -1,0 +1,16 @@
+# Railway.app Frontend Configuration
+# This file configures the frontend service deployment
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile.frontend"
+
+[deploy]
+startCommand = "nginx -g 'daemon off;'"
+healthcheckPath = "/"
+healthcheckTimeout = 60
+restartPolicyType = "ON_FAILURE"
+
+# Static site configuration
+[environments.production]
+    RAILWAY_PUBLIC_DOMAIN = "true"
