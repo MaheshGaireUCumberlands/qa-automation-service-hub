@@ -180,40 +180,38 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for comprehensive deployment guide.
 
 ---
 
-## 🌐 **Free Cloud Deployment (Railway)**
+## 🌐 **Live Cloud Deployment (Railway)** ✅
 
-### 🚀 **One-Click Deploy to Railway**
+### 🎉 **Successfully Deployed!**
 
-Deploy instantly to Railway's free tier:
+Your QA Automation Service Hub is **LIVE** on Railway's free tier!
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template)
+**Deployment Status**: ✅ **ACTIVE**  
+**Auto-Deploy**: ✅ **ON** (every git push)  
+**Project**: passionate-communication
 
-### 🔧 **Manual Railway Deployment**
+### 🌐 **Live Access**
+- **Dashboard**: [Railway Project Dashboard](https://railway.app/project/12816f9a-0e5d-4c09-8424-054bdea640bc)
+- **Live App**: Check Railway dashboard for your unique URL
+- **API Health**: `https://[your-app].railway.app/actuator/health`
+- **Swagger UI**: `https://[your-app].railway.app/swagger-ui.html`
+
+### ⚡ **How It Works**
+1. **Push code** to main branch → **Automatic deployment**
+2. **Railway GitHub Integration** handles everything
+3. **No secrets needed** - fully automated
+4. **Environment variables** managed in Railway dashboard
+
+### 🔧 **Local Development**
 ```bash
-# Install Railway CLI
-npm install -g @railway/cli
+# For local testing
+./deploy.sh basic
 
-# Deploy with our script
-./railway-deploy.sh
-
-# Or deploy manually
-railway login
-railway init
-railway up
+# For local development with monitoring
+./deploy.sh monitoring
 ```
 
-### 🌐 **Railway Service Access**
-- **Live App**: `https://your-app.railway.app`
-- **Backend API**: `https://your-api.railway.app`
-- **Health Check**: `https://your-api.railway.app/actuator/health`
-
-### 📖 **Railway Setup Guide**
-1. Get HuggingFace API key (free): [huggingface.co/settings/tokens](https://huggingface.co/settings/tokens)
-2. Run deployment script: `./railway-deploy.sh`
-3. Set environment variables in Railway dashboard
-4. Your app will be live in minutes!
-
-See [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md) for detailed Railway deployment guide.
+See [RAILWAY_DEPLOYMENT.md](RAILWAY_DEPLOYMENT.md) for detailed Railway information.
 
 ---
 
