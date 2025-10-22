@@ -14,11 +14,6 @@ public class WebConfig implements WebFluxConfigurer {
         // Serve static resources from classpath:/static/
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/static/")
-                .setCachePeriod(3600)
                 .resourceChain(true);
-        
-        // Specific handler for the root path
-        registry.addResourceHandler("/")
-                .addResourceLocations("classpath:/static/test-dashboard.html");
     }
 }

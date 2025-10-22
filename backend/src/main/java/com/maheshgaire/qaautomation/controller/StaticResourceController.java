@@ -3,26 +3,26 @@ package com.maheshgaire.qaautomation.controller;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 @RestController
 public class StaticResourceController {
 
     @GetMapping("/")
-    public Mono<ServerResponse> home() {
-        return ServerResponse.ok()
+    public Mono<ResponseEntity<String>> home() {
+        return Mono.just(ResponseEntity.ok()
                 .contentType(MediaType.TEXT_HTML)
-                .bodyValue(getTestDashboardContent());
+                .body(getTestDashboardContent()));
     }
 
     @GetMapping("/test-dashboard.html")
-    public Mono<ServerResponse> testDashboard() {
-        return ServerResponse.ok()
+    public Mono<ResponseEntity<String>> testDashboard() {
+        return Mono.just(ResponseEntity.ok()
                 .contentType(MediaType.TEXT_HTML)
-                .bodyValue(getTestDashboardContent());
+                .body(getTestDashboardContent()));
     }
 
     private String getTestDashboardContent() {
