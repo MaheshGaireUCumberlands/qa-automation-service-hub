@@ -24,7 +24,21 @@ Your Railway API token for authentication.
 6. Value: Your Railway token
 7. Click "Add secret"
 
-### 2. HF_API_KEY (Optional)
+### 2. RAILWAY_PROJECT_ID (Required)
+Your Railway project ID for linking CI/CD deployments.
+
+**How to get it:**
+1. Go to [Railway Dashboard](https://railway.app/dashboard)
+2. Click on your "passionate-communication" project
+3. Look at the URL: `https://railway.app/project/[PROJECT-ID]`
+4. Copy the PROJECT-ID part (e.g., `12816f9a-0e5d-4c09-8424-054bdea640bc`)
+
+**How to add to GitHub:**
+1. Follow same steps as RAILWAY_TOKEN above
+2. Name: `RAILWAY_PROJECT_ID`
+3. Value: Your Railway project ID (from URL)
+
+### 3. HF_API_KEY (Optional)
 Your HuggingFace API key for AI features.
 
 **How to get it:**

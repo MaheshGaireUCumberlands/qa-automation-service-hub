@@ -24,17 +24,17 @@ jobs:
         
     - name: Deploy to Railway
       run: |
-        # Set Railway token as environment variable
-        export RAILWAY_TOKEN="${{ secrets.RAILWAY_TOKEN }}"
+        # Link to existing project using project ID
+        railway link ${{ secrets.RAILWAY_PROJECT_ID }}
+        
+        # Set environment variables first
+        railway variables --set "SPRING_PROFILES_ACTIVE=production" --skip-deploys
+        railway variables --set "SERVER_PORT=8080" --skip-deploys  
+        railway variables --set "HF_API_KEY=${{ secrets.HF_API_KEY || 'demo-mode' }}" --skip-deploys
+        railway variables --set "RAILWAY_ENVIRONMENT=production" --skip-deploys
         
         # Deploy the application
         railway up --detach
-        
-        # Set environment variables
-        railway variables --set "SPRING_PROFILES_ACTIVE=production" --skip-deploys
-        railway variables --set "SERVER_PORT=8080" --skip-deploys
-        railway variables --set "HF_API_KEY=${{ secrets.HF_API_KEY }}" --skip-deploys
-        railway variables --set "RAILWAY_ENVIRONMENT=production"
       env:
         RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         
@@ -46,6 +46,7 @@ jobs:
         echo ""
         echo "Required GitHub Secrets:"
         echo "- RAILWAY_TOKEN: Your Railway API token"
+        echo "- RAILWAY_PROJECT_ID: Your Railway project ID"
         echo "- HF_API_KEY: Your HuggingFace API key (optional, defaults to demo-mode)"
       env:
         RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
