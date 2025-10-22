@@ -397,8 +397,18 @@
     </div>
 
     <script>
-        // Use relative URLs so it works with any domain (Railway, localhost, etc.)
-        const API_BASE = '';
+        // Dynamic API base URL for different environments
+        function getApiBaseUrl() {
+            // Check if we're in local development
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                return 'http://localhost:8080';
+            }
+            
+            // For Railway or any deployed environment, use same origin
+            return window.location.origin;
+        }
+        
+        const API_BASE = getApiBaseUrl();
 
         // Check API status on load
         document.addEventListener('DOMContentLoaded', function() {

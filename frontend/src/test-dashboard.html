@@ -404,8 +404,9 @@
                 return 'http://localhost:8080';
             }
             
-            // For Railway or any deployed environment, use same origin
-            return window.location.origin;
+            // For Railway deployment, use environment-specific backend URL
+            // You'll need to replace this with your actual Railway backend URL
+            return 'https://qa-automation-backend-production.railway.app';
         }
         
         const API_BASE = getApiBaseUrl();

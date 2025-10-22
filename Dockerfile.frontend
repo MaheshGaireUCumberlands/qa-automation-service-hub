@@ -60,6 +60,13 @@ EOF
 # Copy static files from builder
 COPY frontend/src/ /usr/share/nginx/html/
 
+# Create a script to inject environment variables into JavaScript
+RUN echo '#!/bin/sh' > /docker-entrypoint.d/30-inject-backend-url.sh && \
+    echo 'if [ -n "$BACKEND_URL" ]; then' >> /docker-entrypoint.d/30-inject-backend-url.sh && \
+    echo '  sed -i "s|https://qa-automation-backend-production.railway.app|$BACKEND_URL|g" /usr/share/nginx/html/test-dashboard.html' >> /docker-entrypoint.d/30-inject-backend-url.sh && \
+    echo 'fi' >> /docker-entrypoint.d/30-inject-backend-url.sh && \
+    chmod +x /docker-entrypoint.d/30-inject-backend-url.sh
+
 # Create nginx user and fix permissions
 RUN addgroup -g 1001 nginxgroup && \
     adduser -u 1001 -G nginxgroup -s /bin/sh -D nginxuser
