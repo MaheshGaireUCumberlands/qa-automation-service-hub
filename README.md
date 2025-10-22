@@ -246,4 +246,4 @@ If you want to contribute or run locally for development:
 1. **Clone**: `git clone https://github.com/MaheshGaireUCumberlands/qa-automation-service-hub`
 2. **Backend**: Java 17 + Spring Boot WebFlux + MCP Protocol
 3. **Frontend**: Modern HTML5/CSS3 + Tailwind CSS + Vanilla JavaScript
-4. **Documentation**: See [DEPLOYMENT.md](DEPLOYMENT.md) for local development setup
+4. **Documentation**: See [DEPLOYMENT.md](DEPLOYMENT.md) for local development setup# Trigger Railway deployment
