@@ -1,6 +1,8 @@
 # QA Automation Service Hub
 
-🌐 **LIVE APPLICATION** - Access directly at Railway: [QA Automation Hub](https://railway.app/project/12816f9a-0e5d-4c09-8424-054bdea640bc)
+🚀 **LIVE FRONTEND APPLICATION**: [https://qa-automation-hub.up.railway.app/test-dashboard.html](https://qa-automation-hub.up.railway.app/test-dashboard.html)
+
+🌐 **Railway Project Dashboard**: [QA Automation Hub](https://railway.app/project/12816f9a-0e5d-4c09-8424-054bdea640bc)
 
 🔗 **Industry-first QA platform with Model Context Protocol (MCP) integration** - Connect seamlessly with Claude, ChatGPT, and other AI tools for automated testing workflows.
 
@@ -75,18 +77,20 @@ A comprehensive full-stack web application that provides advanced QA utilities i
 
 Your QA Automation Service Hub is **hosted on Railway** and accessible instantly - no installation required!
 
+**🚀 FRONTEND URL**: **[https://qa-automation-hub.up.railway.app/test-dashboard.html](https://qa-automation-hub.up.railway.app/test-dashboard.html)**
+
 **Status**: ✅ **LIVE** | **Auto-Deploy**: ✅ **ON** | **Free Tier**: ✅ **ACTIVE**
 
 ### 🌐 **Access Your Application**
-- **🏠 Main Dashboard**: [Railway Project](https://railway.app/project/12816f9a-0e5d-4c09-8424-054bdea640bc) → Get your live URL
-- **📊 Test Dashboard**: `https://[your-app].railway.app/test-dashboard.html`
-- **💓 Health Check**: `https://[your-app].railway.app/actuator/health`
-- **📚 API Documentation**: `https://[your-app].railway.app/swagger-ui.html`
+- **🏠 Main Dashboard**: https://qa-automation-hub.up.railway.app/test-dashboard.html  
+- **📊 Test Dashboard**: https://qa-automation-hub.up.railway.app/test-dashboard.html  
+- **💓 Health Check**: `https://[backend-url].railway.app/actuator/health`
+- **📚 API Documentation**: `https://[backend-url].railway.app/swagger-ui.html`
 
 ### ⚡ **How to Use**
-1. **Click** the Railway project link above
-2. **Copy** your live application URL from the dashboard
-3. **Open** the Test Dashboard to start using MCP features
+1. **🚀 DIRECT ACCESS**: [https://qa-automation-hub.up.railway.app/test-dashboard.html](https://qa-automation-hub.up.railway.app/test-dashboard.html)
+2. **Click** "📖 Show Complete User Guide" for interactive tutorials
+3. **Run** the "🎯 Run MCP Demo" to see everything in action
 4. **Connect** with your AI tools using the MCP endpoints
 
 ---
@@ -129,8 +133,8 @@ Your QA Automation Service Hub is **hosted on Railway** and accessible instantly
 ## 🚀 Getting Started
 
 ### 🧪 **Try the Live Application**
-1. **Access** your live application via the Railway dashboard link above
-2. **Open** the Test Dashboard at `/test-dashboard.html`
+1. **🚀 DIRECT ACCESS**: [https://qa-automation-hub.up.railway.app/test-dashboard.html](https://qa-automation-hub.up.railway.app/test-dashboard.html)
+2. **Open** the Test Dashboard (already linked above!)
 3. **Click** "📖 Show Complete User Guide" for comprehensive tutorials
 4. **Run** the "🎯 Run MCP Demo" to see everything in action
 5. **Explore** Tools, Resources, and Prompts with guided workflows
@@ -155,7 +159,7 @@ Your QA Automation Service Hub is **hosted on Railway** and accessible instantly
   "mcpServers": {
     "qa-automation-hub": {
       "command": "curl",
-      "args": ["-X", "POST", "https://[your-app].railway.app/api/v1/mcp/rpc"]
+      "args": ["-X", "POST", "https://[backend-url].railway.app/api/v1/mcp/rpc"]
     }
   }
 }
@@ -164,16 +168,18 @@ Your QA Automation Service Hub is **hosted on Railway** and accessible instantly
 ### For Custom AI Applications
 ```bash
 # MCP JSON-RPC 2.0 Endpoint
-POST https://[your-app].railway.app/api/v1/mcp/rpc
+POST https://[backend-url].railway.app/api/v1/mcp/rpc
 
 # REST API Endpoints (easier integration)
-GET  https://[your-app].railway.app/api/v1/mcp/tools
-POST https://[your-app].railway.app/api/v1/mcp/tools/{tool}/call
-GET  https://[your-app].railway.app/api/v1/mcp/resources
-GET  https://[your-app].railway.app/api/v1/mcp/prompts
+GET  https://[backend-url].railway.app/api/v1/mcp/tools
+POST https://[backend-url].railway.app/api/v1/mcp/tools/{tool}/call
+GET  https://[backend-url].railway.app/api/v1/mcp/resources
+GET  https://[backend-url].railway.app/api/v1/mcp/prompts
 ```
 
-*Replace `[your-app]` with your actual Railway app URL from the dashboard.*  
+**🚀 Frontend Application**: [https://qa-automation-hub.up.railway.app/test-dashboard.html](https://qa-automation-hub.up.railway.app/test-dashboard.html)
+
+*Replace `[backend-url]` with your actual Railway backend service URL from the dashboard.*  
 
 ---
 
